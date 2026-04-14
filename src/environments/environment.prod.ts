@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'hhttps://auth-login-prod.up.railway.app',
+  apiUrl: 'https://auth-login-prod.up.railway.app',
 };
