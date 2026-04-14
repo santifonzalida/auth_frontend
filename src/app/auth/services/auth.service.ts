@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 import { User } from '../models/User';
 import { LoginRequest } from '../models/LoginRequest';
 import { LoginResponse } from '../models/LoginResponse';  
@@ -11,7 +12,7 @@ import { LoginResponse } from '../models/LoginResponse';
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly API_URL = 'http://localhost:3000/auth';
+  private readonly API_URL = environment.apiUrl;
   private readonly TOKEN_KEY = 'access_token';
   
   // Signal para el estado del usuario
