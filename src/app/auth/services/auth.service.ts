@@ -27,7 +27,7 @@ export class AuthService {
   }
 
   login(credentials: LoginRequest): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.API_URL}/login`, credentials).pipe(
+    return this.http.post<LoginResponse>(`${this.API_URL}/auth/login`, credentials).pipe(
       tap(response => {
         if (response.exito && response.accessToken) {
           this.setToken(response.accessToken);
