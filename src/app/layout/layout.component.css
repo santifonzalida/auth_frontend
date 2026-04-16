@@ -1,0 +1,6 @@
+/* Garantiza que la sidebar siempre sea visible en pantallas grandes independientemente del estado del componente */
+@media (min-width: 1024px) {
+  aside {
+    transform: translateX(0) !important;
+  }
+}

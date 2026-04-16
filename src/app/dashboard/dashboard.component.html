@@ -1,30 +1,8 @@
-<div class="min-h-screen bg-gray-50">
-  <!-- Header -->
-  <header class="bg-white shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-      <div class="flex justify-between items-center">
-        <h1 class="text-2xl font-bold text-gray-900">Dashboard</h1>
-        <div class="flex items-center space-x-4">
-          <div class="text-sm text-gray-600">
-            <span class="font-medium">{{ authService.currentUser()?.email }}</span>
-          </div>
-          <button
-            (click)="logout()"
-            class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
-          >
-            Cerrar sesión
-          </button>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main Content -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="max-w-7xl mx-auto">
     <!-- Welcome Card -->
     <div class="bg-white rounded-lg shadow p-6 mb-6">
       <h2 class="text-xl font-semibold text-gray-900 mb-2">
-        ¡Bienvenido, {{ authService.currentUser()?.email }}!
+        ¡Bienvenido, {{ authService.currentUser()?.apellido }}, {{ authService.currentUser()?.nombre }}!
       </h2>
       <p class="text-gray-600">Has iniciado sesión correctamente.</p>
     </div>
@@ -102,5 +80,4 @@
         </div>
       </div>
     </div>
-  </main>
 </div>
