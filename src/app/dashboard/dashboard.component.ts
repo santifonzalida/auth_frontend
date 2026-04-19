@@ -6,7 +6,6 @@ import { AuthService } from '../auth/services/auth.service';
   selector: 'app-dashboard',
   imports: [CommonModule],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent {
   constructor(protected authService: AuthService) {}

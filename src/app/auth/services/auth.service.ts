@@ -74,7 +74,15 @@ export class AuthService {
     return this.currentUser()?.permissions?.includes(permission) ?? false;
   }
 
+  hasAnyPermission(permissions: string[]): boolean {
+    return permissions.some(p => this.hasPermission(p));
+  }
+
   hasRole(role: string): boolean {
     return this.currentUser()?.roles?.includes(role) ?? false;
   }
+
+  hasAnyRole(roles: string[]): boolean {
+    return roles.some(r => this.hasRole(r));
+  }  
 }
