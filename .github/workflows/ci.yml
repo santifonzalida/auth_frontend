@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Angular 21 CI
 
 on:
   push:
@@ -7,13 +7,24 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-    - run: npm ci
-    - run: npm test
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22' # Versión recomendada para Angular 21
+          cache: 'npm'
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Ejecutar Pruebas (Vitest)
+        # Angular 21 usa Vitest por defecto en modo CI si detecta el entorno
+        run: npm test -- --watch=false
+
+      - name: Compilar Proyecto
+        run: npm run build -- --configuration=production
