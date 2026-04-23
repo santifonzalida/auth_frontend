@@ -44,8 +44,8 @@ describe('LoginComponent', () => {
 
   it('login exitoso navega al dashboard', () => {
     component.loginForm.setValue({
-      username: 'admin',
-      password: '1234'
+      email: 'santi@santi.com',
+      password: '1234567'
     });
   });
 
