@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './auth/guards/auth.guard';
 import { LayoutComponent } from './layout/layout.component';
-import { RolesGuard } from './auth/guards/role.guard';
+import { rolesGuard } from './auth/guards/role.guard';
 
 export const routes: Routes = [
   {
@@ -12,7 +12,7 @@ export const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
         path: 'dashboard',
-        canActivate: [RolesGuard],
+        canActivate: [rolesGuard],
         data: {
           roles: ['ADMIN','USER'],
         },
@@ -20,7 +20,7 @@ export const routes: Routes = [
       },
       {
         path: 'salas',
-        canActivate: [RolesGuard],
+        canActivate: [rolesGuard],
         data: {
           roles: ['ADMIN']
         },
@@ -28,7 +28,7 @@ export const routes: Routes = [
       },
       {
         path: 'profesionales',
-        canActivate: [RolesGuard],
+        canActivate: [rolesGuard],
         data: {
           roles: ['ADMIN']
         },
@@ -36,7 +36,7 @@ export const routes: Routes = [
       },
       {
         path: 'tutores',
-        canActivate: [RolesGuard],
+        canActivate: [rolesGuard],
         data: {
           roles: ['ADMIN']
         },
@@ -44,7 +44,7 @@ export const routes: Routes = [
       },
       {
         path: 'pacientes',
-        canActivate: [RolesGuard],
+        canActivate: [rolesGuard],
         data: {
           roles: ['ADMIN']
         },

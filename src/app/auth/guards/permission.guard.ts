@@ -1,26 +1,21 @@
-import { Injectable } from "@angular/core";
-import { CanActivate, ActivatedRouteSnapshot, Router } from "@angular/router";
-import { AuthService } from "../services/auth.service";
+import { inject } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivateFn, Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
-@Injectable({ providedIn: 'root' })
-export class PermissionGuard implements CanActivate {
+export const permissionsGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
+  const authService = inject(AuthService);
+  const router = inject(Router);
 
-  constructor(private authService: AuthService, private router: Router) {}
+  const requiredPermissions = route.data['permissions'] as string[];
 
-  canActivate(route: ActivatedRouteSnapshot): boolean {
-    const requiredPermissions = route.data['permissions'] as string[];
-
-    if (!requiredPermissions || requiredPermissions.length === 0) {
-      return true;
-    }
-
-    const hasAccess = this.authService.hasAnyPermission(requiredPermissions);
-
-    if (!hasAccess) {
-      this.router.navigate(['/forbidden']); // o donde quieras
-      return false;
-    }
-
+  if (!requiredPermissions || requiredPermissions.length === 0) {
     return true;
   }
-}
+
+  if (authService.hasAnyPermission(requiredPermissions)) {
+    return true;
+  }
+
+  router.navigate(['/forbidden']);
+  return false;
+};
