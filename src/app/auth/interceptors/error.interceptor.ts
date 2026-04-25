@@ -6,6 +6,10 @@ import { AuthService } from '../services/auth.service';
 import { NotificationService } from '../../shared/services/notification.service';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
+  if (req.url.includes('/auth/login')) {
+    return next(req);
+  }
+
   const router        = inject(Router);
   const authService   = inject(AuthService);
   const notifications = inject(NotificationService);
@@ -18,7 +22,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
           break;
 
         case 401:
-          notifications.warning('Tu sesión expiró. Por favor iniciá sesión nuevamente.');
+          notifications.warning('Verifica tus credenciales');
           authService.logout();
           break;
 
