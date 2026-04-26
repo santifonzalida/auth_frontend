@@ -12,7 +12,7 @@ const STYLES: Record<NotificationType, string> = {
   selector: 'app-toast',
   standalone: true,
   template: `
-    <div class="fixed top-4 right-4 z-50 opacity-45 flex flex-col gap-2 w-96 max-w-[calc(100vw-2rem)]">
+    <div class="fixed top-4 left-1/2 -translate-x-1/2 z-50 opacity-65 flex flex-col gap-2 w-96 max-w-[calc(100vw-2rem)]">
       @for (n of svc.notifications(); track n.id) {
         <div
           role="alert"

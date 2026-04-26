@@ -45,10 +45,17 @@ export const routes: Routes = [
       {
         path: 'pacientes',
         canActivate: [rolesGuard],
-        data: {
-          roles: ['ADMIN']
-        },
-        loadComponent: () => import('./pacientes/pacientes.component').then(m => m.PacientesComponent)
+        data: { roles: ['ADMIN','USER'] },
+        children: [
+          {
+            path: '',
+            loadComponent: () => import('./pacientes/pacientes.component').then(m => m.PacientesComponent)
+          },
+          {
+            path: 'nuevo',
+            loadComponent: () => import('./pacientes/crear-paciente/crear-paciente.component').then(m => m.CrearPacienteComponent)
+          }
+        ]
       },
       {
         path: 'forbidden',

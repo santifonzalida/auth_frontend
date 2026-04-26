@@ -27,8 +27,8 @@ export class NotificationService {
     this._notifications.update(n => n.filter(notif => notif.id !== id));
   }
 
-  error(message: string): void   { this.show(message, 'error'); }
-  warning(message: string): void { this.show(message, 'warning'); }
-  info(message: string): void    { this.show(message, 'info'); }
-  success(message: string): void { this.show(message, 'success'); }
+  error(message: string, duration?: number): void   { this.show(message, 'error', duration); }
+  warning(message: string, duration?: number): void { this.show(message, 'warning', duration); }
+  info(message: string, duration?: number): void    { this.show(message, 'info', duration); }
+  success(message: string, duration?: number): void { this.show(message, 'success', duration); }
 }

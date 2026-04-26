@@ -1,0 +1,151 @@
+<div class="mx-auto space-y-6">
+
+  <!-- Encabezado -->
+  <div class="flex items-center gap-3">
+    <a
+      routerLink="/pacientes"
+      class="p-2 rounded-lg text-gray-500 hover:bg-gray-100 transition-colors"
+      title="Volver al listado"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+      </svg>
+    </a>
+    <h1 class="text-2xl font-bold text-gray-900">Nuevo paciente</h1>
+  </div>
+
+  <!-- Formulario -->
+  <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+        <!-- Nombre -->
+        <div class="flex flex-col gap-1">
+          <label class="text-sm font-medium text-gray-700">
+            Nombre <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            formControlName="nombre"
+            placeholder="Juan"
+            class="rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+            [class.border-red-400]="fieldHasError('nombre')"
+            [class.border-gray-300]="!fieldHasError('nombre')"
+          />
+          @if (fieldHasError('nombre')) {
+            <p class="text-xs text-red-500">El nombre es obligatorio.</p>
+          }
+        </div>
+
+        <!-- Apellido -->
+        <div class="flex flex-col gap-1">
+          <label class="text-sm font-medium text-gray-700">
+            Apellido <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            formControlName="apellido"
+            placeholder="Pérez"
+            class="rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+            [class.border-red-400]="fieldHasError('apellido')"
+            [class.border-gray-300]="!fieldHasError('apellido')"
+          />
+          @if (fieldHasError('apellido')) {
+            <p class="text-xs text-red-500">El apellido es obligatorio.</p>
+          }
+        </div>
+
+        <!-- DNI -->
+        <div class="flex flex-col gap-1">
+          <label class="text-sm font-medium text-gray-700">
+            DNI <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            formControlName="dni"
+            placeholder="30123456"
+            class="rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+            [class.border-red-400]="fieldHasError('dni')"
+            [class.border-gray-300]="!fieldHasError('dni')"
+          />
+          @if (fieldHasError('dni')) {
+            <p class="text-xs text-red-500">El DNI es obligatorio.</p>
+          }
+        </div>
+
+        <!-- Fecha de nacimiento -->
+        <div class="flex flex-col gap-1">
+          <label class="text-sm font-medium text-gray-700">
+            Fecha de nacimiento <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="date"
+            formControlName="fechaNacimiento"
+            class="rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+            [class.border-red-400]="fieldHasError('fechaNacimiento')"
+            [class.border-gray-300]="!fieldHasError('fechaNacimiento')"
+          />
+          @if (fieldHasError('fechaNacimiento')) {
+            <p class="text-xs text-red-500">La fecha de nacimiento es obligatoria.</p>
+          }
+        </div>
+
+        <!-- Email -->
+        <div class="flex flex-col gap-1">
+          <label class="text-sm font-medium text-gray-700">Email</label>
+          <input
+            type="email"
+            formControlName="email"
+            placeholder="juan.perez@email.com"
+            class="rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+            [class.border-red-400]="fieldHasError('email')"
+            [class.border-gray-300]="!fieldHasError('email')"
+          />
+          @if (fieldHasError('email')) {
+            <p class="text-xs text-red-500">Ingresá un email válido.</p>
+          }
+        </div>
+
+        <!-- Teléfono -->
+        <div class="flex flex-col gap-1">
+          <label class="text-sm font-medium text-gray-700">Teléfono</label>
+          <input
+            type="text"
+            formControlName="telefono"
+            placeholder="+5491155551234"
+            class="rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+          />
+        </div>
+
+      </div>
+
+      <!-- Acciones -->
+      <div class="flex items-center justify-end gap-3 mt-6 pt-4 border-t border-gray-100">
+        <a
+          routerLink="/pacientes"
+          class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+        >
+          Cancelar
+        </a>
+        <button
+          type="submit"
+          [disabled]="isSubmitting()"
+          class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+        >
+          @if (isSubmitting()) {
+            <svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+            </svg>
+            Guardando...
+          } @else {
+            Guardar paciente
+          }
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+</div>
